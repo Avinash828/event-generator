@@ -12,6 +12,7 @@ IMAGE_NAME ?= docker.io/falcosecurity/event-generator
 
 IMAGE_NAME_BRANCH := $(IMAGE_NAME):$(GIT_BRANCH_CLEAN)
 IMAGE_NAME_COMMIT := $(IMAGE_NAME):$(GIT_COMMIT)
+echo $LD_LIBRARY_PATH
 
 TEST_FLAGS ?= -v -race
 
