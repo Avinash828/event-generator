@@ -3,7 +3,7 @@ FROM golang:1.16.5-alpine3.14 as builder
 LABEL maintainer="cncf-falco-dev@lists.cncf.io"
 
 RUN apk add --no-cache make bash git build-base
-RUN  export LD_LIBRARY_PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${LD_LIBRARY_PATH}
+RUN  export LD_LIBRARY_PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/pkg/tool/linux_arm64/link${LD_LIBRARY_PATH}
 WORKDIR /event-generator
 COPY . .
 
