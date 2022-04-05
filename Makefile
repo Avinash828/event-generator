@@ -27,13 +27,13 @@ prepare: clean events/k8saudit/yaml/bundle.go
 
 .PHONY: ${output}
 ${output}:
-	$(GO) build -o $@ ${main}	echo $LD_LIBRARY_PATH
+	$(GO) build -o $@ ${main}
 
 .PHONY: clean
 clean:
 	$(RM) -R ${output}
 	$(RM) -f events/k8saudit/yaml/bundle.go
-	$(RM) -R ${output} ${docgen}	echo $LD_LIBRARY_PATH
+	$(RM) -R ${output} ${docgen}
 
 .PHONY: test
 test: events/k8saudit/yaml/bundle.go
