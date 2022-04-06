@@ -27,7 +27,7 @@ prepare: clean events/k8saudit/yaml/bundle.go
 
 .PHONY: ${output}
 ${output}:
-	$(GO) build -o $@ ${main}
+	$(GO) build -v -gcflags="all=-N -l" -o $@ ${main}
 
 .PHONY: clean
 clean:
