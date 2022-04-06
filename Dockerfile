@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine3.14 as builder
+FROM golang:1.18.0-alpine3.15 as builder
 
 LABEL maintainer="cncf-falco-dev@lists.cncf.io"
 
