@@ -22,8 +22,8 @@ dockers:
     goarch: amd64, arm, arm64
     dockerfile: Dockerfile
     image_templates:
-      - "falcosecurity/event-generator:latest"
-      - "falcosecurity/event-generator:{{ .Version }}"
+      - "avinashyadavpuresoftware/event-generator:latest"
+      - "avinashyadavpuresoftware/event-generator:{{ .Version }}"
     build_flag_templates:
       - "--pull"
       - "--label=org.opencontainers.image.created={{.Date}}"
