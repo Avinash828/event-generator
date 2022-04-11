@@ -10,6 +10,13 @@ workflows:
           filters:
             tags:
               only: /v[0-9]+(\.[0-9]+)*(-.*)*/
+      - release:
+          context: falco
+          requires:
+            - test
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*(-.*)*/
 jobs:
   test:
     docker:
