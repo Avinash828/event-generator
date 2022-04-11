@@ -8,6 +8,7 @@ builds:
     - linux
     goarch:
     - amd64
+    - arm64
     - 386
     main: .
     env:
@@ -17,7 +18,7 @@ builds:
 dockers:
   -
     goos: linux
-    goarch: amd64
+    goarch: amd64, arm64
     dockerfile: Dockerfile
     image_templates:
       - "falcosecurity/event-generator:latest"
