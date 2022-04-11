@@ -1,10 +1,8 @@
-FROM golang:1.18.0-alpine3.15 as builder
+FROM alpine:latest as builder
 
 LABEL maintainer="cncf-falco-dev@lists.cncf.io"
 
-RUN apk add --no-cache make bash git build-base
-RUN export CXX=/usr/local/go/pkg/tool/linux_arm64/link
-RUN  export LD_LIBRARY_PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/pkg/tool/linux_arm64/link${LD_LIBRARY_PATH}
+RUN apk add --no-cache make bash git build-base go
 WORKDIR /event-generator
 COPY . .
 
