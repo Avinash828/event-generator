@@ -17,7 +17,7 @@ builds:
     binary: event-generator
 
 dockers:
-  - use: Buildx
+  - use: buildx
     goos: linux
     goarch: amd64
     dockerfile: Dockerfile
@@ -41,7 +41,7 @@ dockers:
       - main.go
       - Makefile
 
-  - use: Buildx
+  - use: buildx
     goos: linux
     goarch: arm64
     dockerfile: Dockerfile
