@@ -56,6 +56,8 @@ jobs:
       - run:
           name: Prepare env
           command: |
-            no_output_timeout: 40m
             echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
-      - run: curl -sL https://git.io/goreleaser | bash
+      - run: 
+          name: Go releaser
+          no_output_timeout: 40m
+          command: curl -sL https://git.io/goreleaser | bash
