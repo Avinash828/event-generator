@@ -36,9 +36,14 @@ jobs:
           name: Build
           command: make build
   release:
-    install-docker-buildx:
-    description: Install Docker Buildx
+          
+    docker:
+      - image: docker.io/circleci/golang:1.16.6
+      - image: cimg/base:stable
     steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.6
       - run:
           name: Install Docker Buildx
           command: |
@@ -51,15 +56,6 @@ jobs:
             docker run --privileged --rm tonistiigi/binfmt --install arm64
             docker context create buildcontext
             docker buildx create buildcontext --use
-            
-    docker:
-      - image: docker.io/circleci/golang:1.16.6
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 20.10.6
-      - install-docker-buildx
       - run:
           name: Prepare env
           command: |
