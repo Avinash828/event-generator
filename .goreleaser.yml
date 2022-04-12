@@ -14,12 +14,13 @@ builds:
     main: .
     env:
       - CGO_ENABLED=0
+      - DOCKER_CLI_EXPERIMENTAL: "enabled"
     binary: event-generator
 
 dockers:
-  -
+  - use: Buildx
     goos: linux
-    goarch: amd64, arm, arm64
+    goarch: amd64
     dockerfile: Dockerfile
     image_templates:
       - "avinashyadavpuresoftware/event-generator:latest"
@@ -40,8 +41,8 @@ dockers:
       - go.sum
       - main.go
       - Makefile
-dockers:
-  -
+
+  - use: Buildx
     goos: linux
     goarch: arm64
     dockerfile: Dockerfile
