@@ -39,7 +39,6 @@ jobs:
           
     docker:
       - image: docker.io/circleci/golang:1.16.6
-      - image: cimg/base:stable
     steps:
       - checkout
       - setup_remote_docker:
@@ -54,6 +53,5 @@ jobs:
       - run:
           name: Prepare env
           command: |
-            export DOCKER_CLI_EXPERIMENTAL=enabled
             echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
       - run: curl -sL https://git.io/goreleaser | bash
