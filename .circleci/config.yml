@@ -39,6 +39,7 @@ jobs:
           
     docker:
       - image: docker.io/circleci/golang:1.16.6
+      - image: cimg/base:stable
     steps:
       - checkout
       - setup_remote_docker:
