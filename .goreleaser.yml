@@ -40,7 +40,31 @@ dockers:
       - go.sum
       - main.go
       - Makefile
-
+dockers:
+  -
+    goos: linux
+    goarch: arm64
+    dockerfile: Dockerfile
+    image_templates:
+      - "avinashyadavpuresoftware/event-generator:latest-arm64"
+      - "avinashyadavpuresoftware/event-generator:{{ .Version }}-arm64"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+    extra_files:
+      - .git
+      - cmd
+      - pkg
+      - events
+      - tools
+      - go.mod
+      - go.sum
+      - main.go
+      - Makefile
+      
 release:
   github:
   prerelease: auto
