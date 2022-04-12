@@ -25,6 +25,7 @@ dockers:
       - "avinashyadavpuresoftware/event-generator:latest"
       - "avinashyadavpuresoftware/event-generator:{{ .Version }}"
     build_flag_templates:
+      - "--platform=linux/amd64"
       - "--pull"
       - "--label=org.opencontainers.image.created={{.Date}}"
       - "--label=org.opencontainers.image.name={{.ProjectName}}"
@@ -46,9 +47,10 @@ dockers:
     goarch: arm64
     dockerfile: Dockerfile
     image_templates:
-      - "avinashyadavpuresoftware/event-generator:latest-arm64"
-      - "avinashyadavpuresoftware/event-generator:{{ .Version }}-arm64"
+      - "avinashyadavpuresoftware/event-generator:latest-arm64_v8"
+      - "avinashyadavpuresoftware/event-generator:{{ .Version }}-arm64_v8"
     build_flag_templates:
+      - "--platform=linux/arm64/v8"
       - "--pull"
       - "--label=org.opencontainers.image.created={{.Date}}"
       - "--label=org.opencontainers.image.name={{.ProjectName}}"
