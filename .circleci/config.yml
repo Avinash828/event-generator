@@ -49,6 +49,8 @@ jobs:
             mkdir -vp ~/.docker/cli-plugins/
             curl --silent -L "https://github.com/docker/buildx/releases/download/v0.5.1/buildx-v0.5.1.linux-amd64" > ~/.docker/cli-plugins/docker-buildx
             chmod a+x ~/.docker/cli-plugins/docker-buildx
+            docker run -it --rm --privileged tonistiigi/binfmt --install all
+            docker buildx create --use --name mybuilder
             docker buildx version
       - run:
           name: Prepare env
