@@ -7,7 +7,6 @@ builds:
     goos:
     - linux
     goarch:
-    - amd64
     - arm64
     - 386
     main: .
@@ -16,31 +15,6 @@ builds:
     binary: event-generator
 
 dockers:
-  - use: buildx
-    goos: linux
-    goarch: amd64
-    dockerfile: Dockerfile
-    image_templates:
-      - "avinashyadavpuresoftware/event-generator:latest"
-      - "avinashyadavpuresoftware/event-generator:{{ .Version }}"
-    build_flag_templates:
-      - "--platform=linux/amd64"
-      - "--pull"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.name={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
-    extra_files:
-      - .git
-      - cmd
-      - pkg
-      - events
-      - tools
-      - go.mod
-      - go.sum
-      - main.go
-      - Makefile
-
   - use: buildx
     goos: linux
     goarch: arm64
