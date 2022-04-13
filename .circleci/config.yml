@@ -58,5 +58,5 @@ jobs:
             echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
       - run: 
           name: Go releaser
-          no_output_timeout: 40m
+          no_output_timeout: 1.25h
           command: curl -sL https://git.io/goreleaser | bash
