@@ -8,20 +8,71 @@ builds:
     - linux
     goarch:
     - arm64
+    - amd64
     - 386
     main: .
     env:
       - CGO_ENABLED=0
     binary: event-generator
-
+dockers:
+  - use: buildx
+    goos: linux
+    goarch: amd64
+    dockerfile: Dockerfile
+    image_templates:
+      - "avinashyadavpuresoftware/event-generator:latest-amd64"
+      - "avinashyadavpuresoftware/event-generator:{{ .Version }}-amd64"
+    build_flag_templates:
+      - "--platform=linux/amd64"
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+    extra_files:
+      - .git
+      - cmd
+      - pkg
+      - events
+      - tools
+      - go.mod
+      - go.sum
+      - main.go
+      - Makefile
+      
+dockers:
+  - use: buildx
+    goos: linux
+    goarch: 386
+    dockerfile: Dockerfile
+    image_templates:
+      - "avinashyadavpuresoftware/event-generator:latest-386"
+      - "avinashyadavpuresoftware/event-generator:{{ .Version }}-386"
+    build_flag_templates:
+      - "--platform=linux/386"
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+    extra_files:
+      - .git
+      - cmd
+      - pkg
+      - events
+      - tools
+      - go.mod
+      - go.sum
+      - main.go
+      - Makefile
 dockers:
   - use: buildx
     goos: linux
     goarch: arm64
     dockerfile: Dockerfile
     image_templates:
-      - "avinashyadavpuresoftware/event-generator:latest-arm64_v8"
-      - "avinashyadavpuresoftware/event-generator:{{ .Version }}-arm64_v8"
+      - "avinashyadavpuresoftware/event-generator:latest-arm64v8"
+      - "avinashyadavpuresoftware/event-generator:{{ .Version }}-arm64v8"
     build_flag_templates:
       - "--platform=linux/arm64/v8"
       - "--pull"
@@ -39,6 +90,18 @@ dockers:
       - go.sum
       - main.go
       - Makefile
+docker_manifests:
+  # https://goreleaser.com/customization/docker_manifest/
+  - name_template: avinashyadavpuresoftware/event-generator:{{ .Version }}
+    image_templates:
+      - avinashyadavpuresoftware/event-generator:{{ .Version }}-amd64
+      - avinashyadavpuresoftware/event-generator:{{ .Version }}-arm64v8
+      - avinashyadavpuresoftware/event-generator:{{ .Version }}-386
+  - name_template: avinashyadavpuresoftware/event-generator:latest
+    image_templates:
+      - avinashyadavpuresoftware/event-generator:latest-amd64
+      - avinashyadavpuresoftware/event-generator:latest-arm64v8
+      - avinashyadavpuresoftware/event-generator:latest-386
       
 release:
   github:
