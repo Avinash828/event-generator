@@ -65,16 +65,7 @@ dockers:
       - go.sum
       - main.go
       - Makefile
-docker_manifests:
-  # https://goreleaser.com/customization/docker_manifest/
-  - name_template: avinashyadavpuresoftware/event-generator:{{ .Version }}
-    image_templates:
-      - avinashyadavpuresoftware/event-generator:{{ .Version }}-amd64
-      - avinashyadavpuresoftware/event-generator:{{ .Version }}-arm64v8
-  - name_template: avinashyadavpuresoftware/event-generator:latest
-    image_templates:
-      - avinashyadavpuresoftware/event-generator:latest-amd64
-      - avinashyadavpuresoftware/event-generator:latest-arm64v8
+
       
 release:
   github:
