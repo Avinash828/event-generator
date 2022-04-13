@@ -39,6 +39,7 @@ jobs:
           
     docker:
       - image: docker.io/circleci/golang:1.16.6
+      - image: cimg/base:stable
     steps:
       - checkout
       - setup_remote_docker:
@@ -58,5 +59,5 @@ jobs:
             echo ${DOCKERHUB_SECRET} | docker login -u ${DOCKERHUB_USER} --password-stdin
       - run: 
           name: Go releaser
-          no_output_timeout: 1.25h
+          no_output_timeout: 50m
           command: curl -sL https://git.io/goreleaser | bash
