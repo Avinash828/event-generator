@@ -40,7 +40,6 @@ dockers:
       - main.go
       - Makefile
       
-dockers:
   - use: buildx
     goos: linux
     goarch: 386
@@ -65,7 +64,7 @@ dockers:
       - go.sum
       - main.go
       - Makefile
-dockers:
+
   - use: buildx
     goos: linux
     goarch: arm64
